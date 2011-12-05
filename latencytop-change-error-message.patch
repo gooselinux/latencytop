@@ -1,0 +1,17 @@
+Do not suggest recompiling the kernel.
+RHBZ#596094
+Michal Schmidt <mschmidt@redhat.com>
+
+Index: latencytop-0.5/latencytop.c
+===================================================================
+--- latencytop-0.5.orig/latencytop.c
++++ latencytop-0.5/latencytop.c
+@@ -120,7 +120,7 @@ void parse_global_list(void)
+ 	size_t dummy;
+ 	file = fopen("/proc/latency_stats","r+");
+ 	if (!file) {
+-		fprintf(stderr, "Please enable the CONFIG_LATENCYTOP configuration in your kernel.\n");
++		fprintf(stderr, "The running kernel does not support latencytop. Please use kernel-debug.\n");
+ 		fprintf(stderr, "Exiting...\n");
+ 		exit(EXIT_FAILURE);
+ 	}
